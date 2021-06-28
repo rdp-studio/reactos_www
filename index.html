@@ -8,11 +8,25 @@
   <meta name="keywords" content="git,fast,github,boost,mirror,fastgit">
   <meta name="description" content="FastGit is dedicated to providing users with high-quality and high-speed GitHub acceleration services to help get github contents easier.">
 </head>
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', "https://gitee.com/api/v5/repos/kkstudio2019/reactos/releases/latest", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            ver=document.getElementById('ver');
+            ver.innerHTML=eval("("+xhr.responseText+")").tag_name;
+        } else {
+            ver=document.getElementById('ver');
+            ver.innerHTML="Version fetch error!";
+        }
+    }
+    xhr.send();
+  </script>
 <body>
   <div class="container">
     <div class="hero">
       <h1 class="name"a><strong>React</strong>OS</h1>
-      <span class="status" id="status-text">0.4.19 RC1</span>
+      <span class="status" id="status-text"><span id="ver">Loading version...</span></span>
       <span class="website">Imagine running your favorite Windows applications and drivers in an open-source environment you can trust.<br/>That's the mission of ReactOS!</span>
       <h2 class="lead">A free and open source os which is super compatible windows.</h2>
     </div>
